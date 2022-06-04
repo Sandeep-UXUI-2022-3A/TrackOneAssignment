@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practicals</title>
+</head>
+<body>
+    <style>
+        @media only screen and (max-width: 480px){
+            body{
+                /* we will not display anything with the class .sm-0 if the screen's width is less than 480px */
+                background-color:blue;
+            }
+        }
+        @media only screen and (min-width: 481px){
+             body{
+                /* anything with the class .med-1 will get 25% of the available width if the screen's width is greater than 480px */
+                background-color: red;
+            }
+        }
+        .acceptCookieDiv{
+            width:400px;
+            height:200px;
+            background:#cccccc;
+            margin : 50px;
+        }
+        .tempContainer{
+            width:200px;
+            height:200px;
+            background:#cccccc;
+            margin : 50px;
+        }
+        #skillList li.completed {
+            color: grey;
+            text-decoration: line-through;
+            background-color: rgb(240, 240, 240);
+        }
+        li.skillItem {
+            font-size: 14px;
+            font-family: sans-serif;
+            color: black;
+        }
+        #skillList{border:1px solid #cccccc;}
+    </style>
+    
+    <!-- SKILLS START -->
+    <h3>My Skills</h3>
+    <div class="title">
+        <input id="getSkillName" type="text" placeholder="Enter task name"/>
+        <button id="addSkill" onclick="createSkill()">Add Skill</button>
+    </div>
+    <ol id="skillList"></ol>
+
+    <!-- SKILLS END -->
+
+   
+
+    <script>
+
+        // DOJO WEATHER SCRIPT START
+
+        function linkClick(){
+            document.getElementById("cookieDivId").style.display = "block";
+        }         
+        function closeCookieDiv(){
+            document.getElementById("cookieDivId").style.display = "none";
+        }
+        function TempChange() {
+            var x = document.getElementById("mySelect").value;
+            var tempValue1 = document.getElementById("temperatureVal1").innerHTML;
+            var tempValue2 = document.getElementById("temperatureVal2").innerHTML;
+            var tempValue3 = document.querySelectorAll(".temperatureVal").innerHTML;
+            
+            if(x == "C"){
+            changeTempTitle("temperature in Celcius");
+            document.getElementById("temperatureVal1").innerHTML = fToC(tempValue1);
+            document.getElementById("temperatureVal2").innerHTML = fToC(tempValue2);
+            }
+            else{
+            changeTempTitle("temperature in Feranhit");
+            document.getElementById("temperatureVal1").innerHTML = cToF(tempValue1);
+            document.getElementById("temperatureVal2").innerHTML = cToF(tempValue2);
+            }    
+        }
+        function changeTempTitle(Value){
+        var items = document.getElementsByClassName("temperatureTitle");
+            for (var i=0; i < items.length; i++) {
+                items[i].innerHTML = Value;
+            }
+        }
+        function cToF(celsius)
+        {
+            return celsius * 9 / 5 + 32;
+        }
+
+        function fToC(fahrenheit)
+        {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+
+        // DOJO WEATHER SCRIPT END
+
+
+        // DOJO WEATHER SCRIPT START
+
+        function createSkill(){
+            var x = document.getElementById("getSkillName");                        // Get input element using ID
+            var a = document.createElement("li");                                  // Create New LI element
+            var b = document.createTextNode(x.value);                              // Create InnerText of LI and Get value of inputbox
+            a.appendChild(b);                                                       // Add text into LI element
+            document.getElementById("skillList").appendChild(a);                    // Add LI into UL
+            x.value='';                                                             // Clear inputbox
+           // document.getElementById("skillList").style.border="1px solid #cccccc";  // Give border to UL
+            a.classList.add("skillItem");                                           // Add new class to LI 
+            a.onclick=taskCompleted;                                                // Declare function onClick of LI 
+        }
+        function taskCompleted(){
+            if(this.classList.contains("completed")){   // Checking for class availability
+                this.classList.remove("completed");     // Remove completed class
+            }else{this.classList.add("completed");}     // Add completed class
+        }
+
+        for(var i=0,a=1; i<3 && a<1; i++, a++) {
+            console.log(i);
+            console.log(a);
+        }
+        function factorialize(num) {
+            if (num === 0 || num === 1)
+                return 1;
+            for (var i = num - 1; i >= 1; i--) {
+                num *= i;
+            }
+            return num;
+        }
+        console.log(factorialize(3));
+
+        var taco1 = {
+            "tortilla": "soft corn tortilla",
+            "protein":  "tinga chicken",
+            "cheese":   "cotija cheese",
+            "toppings": ["lettuce", "pico de gallo", "guacamole"]
+        }
+        console.log("Tortilla: " + taco1.tortilla);
+        console.log("Protein:  " + taco1.protein);
+        console.log("Cheese:   " + taco1.cheese);
+        console.log("Toppings: " + taco1.toppings);
+    </script>
+</body>
+</html>
